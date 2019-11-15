@@ -6,31 +6,46 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class ObjectFileToCSV {
-    public static void main(String[] args) {
-        ArrayList<User> listaUsers = new ArrayList<>();
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+        ObjectFileToCSV objectFileToCSV = new ObjectFileToCSV();
 
+        ArrayList<User> listaUsers = new ArrayList<>();
+        objectFileToCSV.loadUsers(listaUsers);
     }
 
-    private void loadUsers(ArrayList<User> listaUsers) throws IOException {
+    private void loadUsers(ArrayList<User> listaUsers) throws IOException, ClassNotFoundException {
 
         FileInputStream fileInputReader = new FileInputStream("users.bin");
         ObjectInputStream inputStream = new ObjectInputStream(fileInputReader);
-        String line = inputStream.readLine();
-        int count = 0;
-        boolean eof = false;
-        while (!eof){
-            if (line==null){
-                eof= true;
-            }else{
-                String[] usuario = line.split(",");
+        String username;
+        String firstname;
+        String lastname;
+        String email;
+        String password;
+
+        User userRead = (User) inputStream.readObject();
+
+        try {
+            while (userRead!= null) {
+
+                String[] usuario = String.valueOf(userRead).split(",");
                 User user = new User(usuario[0],usuario[1], usuario[2], usuario[3], usuario[4]);
                 listaUsers.add(user);
+
+                System.out.printf(String.valueOf(userRead));
+                userRead = (User) inputStream.readObject();
+
             }
-            line = inputStream.readLine();
-            count++;
+        }catch (java.io.EOFException exc){
+            inputStream.close();
         }
-        fileInputReader.close();
-        inputStream.close();
+
+
+
+
+
+        }
+
 
     }
-}
+
