@@ -31,18 +31,16 @@ public class CSVToObjectFile{
             line = inputStream.readLine();
             count++;
         }
-        fileReader.close();
         inputStream.close();
 
     }
-    public void writeUsers(ArrayList listaUsers) throws IOException {
+    public void writeUsers(ArrayList<User> listaUsers) throws IOException {
         FileOutputStream fileOutputStream = new FileOutputStream("users.bin");
         ObjectOutputStream outputStream = new ObjectOutputStream(fileOutputStream);
-        for (Object u:listaUsers) {
+        for (User u:listaUsers) {
             outputStream.writeObject(u);
             System.out.println(u);
         }
-        fileOutputStream.close();
         outputStream.close();
     }
 }

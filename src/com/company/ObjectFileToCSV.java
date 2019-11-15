@@ -18,25 +18,19 @@ public class ObjectFileToCSV {
 
         FileInputStream fileInputReader = new FileInputStream("users.bin");
         ObjectInputStream inputStream = new ObjectInputStream(fileInputReader);
-        String username;
-        String firstname;
-        String lastname;
-        String email;
-        String password;
 
         User userRead = (User) inputStream.readObject();
 
         try {
             while (userRead!= null) {
 
-                String[] usuario = String.valueOf(userRead).split(",");
-                User user = new User(usuario[0],usuario[1], usuario[2], usuario[3], usuario[4]);
-                listaUsers.add(user);
+                listaUsers.add(userRead);
 
                 userRead = (User) inputStream.readObject();
 
             }
         }catch (java.io.EOFException exc){
+
             inputStream.close();
         }
 
@@ -49,16 +43,16 @@ public class ObjectFileToCSV {
             FileWriter fileOutputStream = new FileWriter("users2.csv");
             BufferedWriter outputStream = new BufferedWriter(fileOutputStream);
 
-            try {
-                for (User u:listaUsers) {
-                    outputStream.write(String.valueOf(u));
-                    System.out.println(String.valueOf(u));
-                }
+            outputStream.write("Username , Firstname , Lastname");
+            outputStream.newLine();
 
-            } catch (java.io.EOFException exc){
-                fileOutputStream.close();
+                for (User u:listaUsers) {
+                    outputStream.write(u.getUsername() + "," + u.getFirstname() + "," + u.getLastname());
+                    outputStream.newLine();
+                }
                 outputStream.close();
-            }
+
+            System.out.println(listaUsers);
         }
 
 
