@@ -4,14 +4,17 @@ import java.io.Serializable;
 import java.nio.file.attribute.UserPrincipal;
 
 public class User implements Serializable {
+    private static final long serialVersionUID = 128L;
     private String username, firstname,lastname, email,  password;
+    private int iddepartamento;
 
-    public User(String username, String firstname, String lastname, String email, String password) {
+    public User(String username, String firstname, String lastname, String email, String password, int iddepartamento) {
         this.username = username;
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
         this.password = password;
+        this.iddepartamento = iddepartamento;
     }
 
     public String getUsername() {return username;}
@@ -34,6 +37,14 @@ public class User implements Serializable {
 
     public void setPassword(String password) {this.password = password;}
 
+    public int getIddepartamento() {
+        return iddepartamento;
+    }
+
+    public void setIddepartamento(int iddepartamento) {
+        this.iddepartamento = iddepartamento;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -42,6 +53,7 @@ public class User implements Serializable {
                 ", lastname='" + lastname + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", iddepartamento=" + iddepartamento +
                 '}';
     }
 }

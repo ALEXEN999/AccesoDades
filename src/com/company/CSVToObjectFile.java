@@ -25,7 +25,7 @@ public class CSVToObjectFile{
                 eof= true;
             }else{
                 String[] usuario = line.split(",");
-                User user = new User(usuario[0],usuario[1], usuario[2], usuario[3], usuario[4]);
+                User user = new User(usuario[0],usuario[1], usuario[2], usuario[3], usuario[4], Integer.parseInt(usuario[5]));
                 listaUsers.add(user);
             }
             line = inputStream.readLine();
