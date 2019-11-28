@@ -31,13 +31,32 @@ public class EmpleatsDOM2 {
                     System.out.println("id : "+eElement.getAttribute("id"));
                     System.out.println();
                     NodeList userNameList = eElement.getElementsByTagName("Username");
+                    NodeList firstNameList = eElement.getElementsByTagName("Nom");
+                    NodeList lastNameList = eElement.getElementsByTagName("Cognom");
+                    NodeList emailList = eElement.getElementsByTagName("Email");
+                    NodeList passList = eElement.getElementsByTagName("Password");
+
+
 
                     for (int count = 0; count < userNameList.getLength(); count++) {
                         Node node1 = userNameList.item(count);
+                        Node node2 = firstNameList.item(count);
+                        Node node3 = lastNameList.item(count);
+                        Node node4 = emailList.item(count);
+                        Node node5 = passList.item(count);
+
                         if (node1.getNodeType() == node1.ELEMENT_NODE){
                             Element user = (Element) node1;
+                            Element firstName = (Element) node2;
+                            Element lastName = (Element) node3;
+                            Element email = (Element) node4;
+                            Element pass = (Element) node5;
+
                             System.out.println("Username : "+user.getTextContent());
-                            System.out.println("Nom : "+user.getTextContent());
+                            System.out.println("Nom : "+firstName.getTextContent());
+                            System.out.println("Cognom : "+lastName.getTextContent());
+                            System.out.println("Email : "+email.getTextContent());
+                            System.out.println("Pass : "+pass.getTextContent());
 
 
                             System.out.println(user.getAttribute("type"));

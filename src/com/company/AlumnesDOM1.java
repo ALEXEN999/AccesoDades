@@ -30,7 +30,7 @@ public class AlumnesDOM1 {
 
             //name elements
             Element dni = doc.createElement("DNI");
-            dni.appendChild(doc.createTextNode("Alejandro"));
+            dni.appendChild(doc.createTextNode("XXXXXXXX-k"));
             alumne.appendChild(dni);
 
             //name elements
